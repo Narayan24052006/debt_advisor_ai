@@ -1,0 +1,31 @@
+{
+  "debts": [
+    {
+      "name": "A",
+      "amount": 30000.0,
+      "interest": 6.0
+    },
+    {
+      "name": "b",
+      "amount": 29000.0,
+      "interest": 6.5
+    },
+    {
+      "name": "c",
+      "amount": 40000.0,
+      "interest": 3.0
+    }
+  ],
+  "subscriptions": [
+    {
+      "name": "netfix",
+      "price": 300.0,
+      "last_used": "2025-03-14"
+    },
+    {
+      "name": "hotstar",
+      "price": 350.0,
+      "last_used": "2025-03-14"
+    }
+  ]
+}
