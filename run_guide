@@ -1,0 +1,122 @@
+# 🧾 Debt Advisor AI - Complete Run Instructions
+
+This document contains all the steps needed to set up, run, train, and manage the Debt Advisor AI project locally using TinyLLaMA.
+
+---
+
+## ✅ 1. Environment Setup
+
+### 🔹 Step 1: Create a Virtual Environment (optional but recommended)
+
+```bash
+python3 -m venv venv
+source venv/bin/activate  # for macOS/Linux
+```
+
+### 🔹 Step 2: Install Required Packages
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+## 🚀 2. Run the Application
+
+Make sure `ollama` is installed and the `tinyllama` model is available.
+
+### 🔹 Step 1: Start Ollama
+
+```bash
+ollama run tinyllama
+```
+
+### 🔹 Step 2: Run the Program
+
+```bash
+python main.py
+```
+
+You will be prompted to:
+
+* Load previous session or start new
+* Enter debt info (name, amount, interest)
+* Enter subscription info (name, price, last used)
+* Receive AI-based suggestions for debt strategy and subscription cleanup
+* Optionally save the session
+
+---
+
+## 🧠 3. (Optional) Train Your Own Model
+
+### 🔹 Step 1: Prepare Your Dataset
+
+Format as a JSONL file in this format:
+
+```json
+{"instruction": "Suggest a debt strategy for...", "response": "Use avalanche..."}
+```
+
+Save as `data/financial_advisor_dataset.jsonl`
+
+### 🔹 Step 2: Run LoRA Training
+
+```bash
+python train_lora.py
+```
+
+### 🔹 Step 3: Merge Model
+
+```bash
+python merge_model.py
+```
+
+> This creates `merged_tinyllama/` which is used by the main app.
+
+---
+
+## 📁 Project Structure Overview
+
+```
+debt_advisor_ai/
+├── main.py                    # Main CLI interface
+├── train_lora.py              # Train LoRA adapter
+├── merge_model.py            # Merge LoRA and base TinyLLaMA
+├── requirements.txt
+├── README.md / run_guide.md
+├── data/
+│   └── financial_advisor_dataset.jsonl
+├── merged_tinyllama/         # Final model (after merge)
+├── lora_out/                 # LoRA adapter output
+├── modules/
+│   ├── debt_analyzer.py
+│   └── subscription_checker.py
+├── utils/
+│   └── gpt_helper.py
+```
+
+---
+
+## 🔚 Tips
+
+* If Git is misconfigured, delete `.git` with: `rm -rf .git`
+* Ollama must be running for local LLM usage
+* Set `model="tinyllama"` in `call_llm()` to use local TinyLLaMA
+
+---
+
+## ✅ Example Output
+
+```text
+----- DEBT STRATEGY -----
+Top interest debt is credit card a at 20%. Using avalanche method.
+Focus on paying down high-interest debt first to reduce overall interest.
+
+----- SUBSCRIPTION REVIEW -----
+Found 0 duplicates and 1 unused subscriptions.
+Consider cancelling your Netflix subscription to reduce unnecessary spending.
+```
+
+---
+
+You are now ready to use Debt Advisor AI locally!
